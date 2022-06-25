@@ -31,13 +31,13 @@
 
 .container {
     display: flex;
-    /*flex-direction: row;
+    flex-direction: row;
     align-items: center;
-    align-content: space-between;*/
+    justify-content: center;
 }
 
 .floor {
-    margin: 0px;
+    margin: 10px;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 25% 25% 25% 25%;
@@ -72,7 +72,7 @@
 }
 
 .controls button {
-    color: white;
+    color: black;
     padding: 8px;
     border-radius: 8px;
     border: none;
@@ -90,3 +90,4 @@
 
 #ai {
     background-color: #00ffff;
+}
