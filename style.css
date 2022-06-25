@@ -31,10 +31,9 @@
 
 .container {
     display: flex;
-    margin: 10px;
     width: 850px;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
     align-content: space-between;
 }
 
