@@ -30,9 +30,9 @@
 }
 
 .container {
+    display: flex;
     margin: 10px;
     width: 850px;
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items:center;
