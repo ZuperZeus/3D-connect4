@@ -31,7 +31,6 @@
 
 .container {
     display: flex;
-    width: 850px;
     flex-direction: row;
     align-items: center;
     align-content: space-between;
