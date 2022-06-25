@@ -24,3 +24,12 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.container {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 100%;
+    max-width: 850px;
+    max-height:200px;
+}
