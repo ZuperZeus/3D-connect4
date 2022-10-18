@@ -15,6 +15,7 @@ class Board
 		void printBoard();
 		void move();
 		static void buffer(int x); //0=clear, 1=create, -1=delete
+		static void cursor(bool x); //0=hide, 1=unhide
 };
 Board::Board()
 {
@@ -26,17 +27,22 @@ Board::Board()
 	v=vector< vector< vector<int> > >(4,vector< vector<int> >(4,vector<int>(4,0)));
 	t=make_tuple(-1,-1,-1);
 	curr=1;
-	buffer(1);
 }
-static void Board::buffer(int x)
+void Board::buffer(int x)
 {
 	if(x==1)	cout<<"\e[?1049h";
 	else if(x==0)	cout<<"\e[;H\e[2J";
 	else if(x==-1)	cout<<"\e[?1049l";
 }
+void Board::cursor(bool x)
+{
+	if(x) cout<<"\e[?25h";
+	else cout<<"\e[?25l";
+}
 void Board::printBoard()
 {
 	buffer(0);
+	cout<<"\n\n\n\n";
 	string f="\e[96m#\e[0m",s="\e[34m#\e[0m",sel="\e[5m◯\e[0m",p1="\e[91m",p2="\e[93m";
 	vector< vector<string> > strvec(40,vector<string>(25," "));
 	for(int i=0;i<4;i++) for(int j=0;j<4;j++) for(int k=0;k<4;k++)
@@ -57,6 +63,7 @@ void Board::printBoard()
 	for(int i=8;i<=38;i++) strvec[i][0]=strvec[i][16]=strvec[i-8][24]=s;
 	for(int i=0;i<40;i++)
 	{
+		cout<<"\t";
 		for(int j=0;j<25;j++)
 		{
 			cout<<strvec[i][j];
@@ -81,18 +88,22 @@ void Board::move()
 		curr=3-curr;
 		t=make_tuple(-1,-1,-1);
 	}
-	printBoard();
 }
 void ctrl_c(int signum)
 {
 	Board::buffer(-1);
+	Board::cursor(true);
+	exit(0);
 }
 int main()
 {
 	signal(SIGINT,ctrl_c);
+	Board::buffer(1);
+	Board::cursor(false);
 	Board b;
 	while(true)
 	{
+		b.printBoard();
 		b.move();
 	}
 }
